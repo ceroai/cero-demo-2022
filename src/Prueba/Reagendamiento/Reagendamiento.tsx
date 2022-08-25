@@ -3,7 +3,7 @@ import './Reagendamiento.css'
 const Reagendamiento = () => {
   return (
     <div className="Reagendamiento">
-      Reagendamiento
+      resultado reagenda
     </div>
   )
 }

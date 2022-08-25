@@ -7,8 +7,8 @@ const Bienvenida = () => {
       <h1>Hola 👋 </h1>
       <h1>En esta interfaz puedes probar el “cerebro” de Cero.AI</h1>
       <div>
-        <Link to="/confirmacion">Confirmaciones</Link>
-        <Link to="/reagendamiento">Reagendamientos</Link>
+        <Link to="/prueba/confirmacion">Confirmaciones</Link>
+        <Link to="/prueba/reagendamiento">Reagendamientos</Link>
       </div>
     </div>
   )

@@ -1,16 +1,35 @@
 import { Route, Routes } from 'react-router-dom'
-import './App.css'
 import Bienvenida from './Bienvenida'
-import Confirmacion from './Confirmacion'
-import Reagendamiento from './Reagendamiento'
+import Prueba from './Prueba'
+import Confirmacion from './Prueba/Confirmacion'
+import Reagendamiento from './Prueba/Reagendamiento'
+import './App.css'
 
 const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Bienvenida />} />
-        <Route path="/confirmacion" element={<Confirmacion />} />
-        <Route path="/reagendamiento" element={<Reagendamiento />} />
+        <Route index element={<Bienvenida />} />
+        <Route path="prueba">
+          <Route
+            path="confirmacion"
+            element={
+              <Prueba
+                titulo="¿Confirmas tu cita de mañana a las 5:00PM?"
+                componenteResultado={<Confirmacion />}
+              />
+            }
+          />
+          <Route
+            path="reagendamiento"
+            element={
+              <Prueba
+                titulo="¿Para cuándo quieres reagendar tu cita de mañana?"
+                componenteResultado={<Reagendamiento />}
+              />
+            }
+          />
+        </Route>
       </Routes>
     </div>
   )
