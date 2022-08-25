@@ -6,7 +6,7 @@ const Prueba = ({ titulo, componenteResultado } : { titulo: String, componenteRe
   return (
     <div className="Prueba">
       <div className="Prueba__contenedor_formulario">
-        <p>¿Cómo responderías a la siguiente pregunta?</p>
+        <p>¿Cómo responderías la siguiente pregunta?</p>
         <p>{titulo}</p>
         <textarea />
         <button>Procesar</button>

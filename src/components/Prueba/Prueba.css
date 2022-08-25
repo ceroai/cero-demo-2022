@@ -16,7 +16,8 @@
 
 .Prueba__link_reinicio {
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
+  left: 1rem;
 }
 
 .Prueba__contenedor_resultado {
