@@ -5,10 +5,17 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
+import { setDefaultOptions } from 'date-fns'
+import es from 'date-fns/esm/locale/es/index.js'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
+
+setDefaultOptions({
+  locale: es
+})
+
 root.render(
   <React.StrictMode>
     <Router >

@@ -1,22 +1,26 @@
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import './Prueba.css'
-import TextareaMasBkn from './TextareaMasBkn'
 
 const Prueba = ({ titulo, componenteResultado } : { titulo: String, componenteResultado: ReactNode }) => {
   return (
     <div className="Prueba">
-      <div>
+      <div className="Prueba__contenedor_formulario">
         <p>¿Cómo responderías a la siguiente pregunta?</p>
         <p>{titulo}</p>
-        <button>Ejemplo</button>
-        <TextareaMasBkn />
+        <textarea />
         <button>Procesar</button>
+        {/* <button>Ejemplo</button> */}
       </div>
-      <div>
+      <div className="Prueba__contenedor_resultado">
         {componenteResultado}
       </div>
-      <Link to="/">Reiniciar</Link>
+      <Link
+        className="Prueba__link_reinicio"
+        to="/"
+      >
+        Reiniciar
+      </Link>
     </div>
   )
 }

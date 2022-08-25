@@ -1,0 +1,19 @@
+.Reagendamiento {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.Reagendamiento__calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-right: 1rem;
+  background-color: var(--color-bordes);
+  border: 1px solid var(--color-bordes);
+  gap: 1px;
+}
+
+.Reagendamiento__celda_calendario {
+  height: 14vh;
+  background-color: var(--color-fondo-claro);
+}

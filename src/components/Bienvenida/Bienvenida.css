@@ -1,0 +1,30 @@
+.Bienvenida {
+  display: grid;
+  place-items: center center;
+  height: 100vh;
+  font-weight: bold;
+}
+
+.Bienvenida__hola {
+  place-self: end center;
+  font-size: 2rem;
+}
+
+.Bienvenida__explicacion {
+  font-size: 2rem;
+}
+
+.Bienvenida__botones {
+  display: flex;
+  gap: 2rem;
+  place-self: start center;
+}
+
+.Bienvenida__boton {
+  background-color: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: normal;
+}

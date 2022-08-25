@@ -1,9 +1,22 @@
 import { Route, Routes } from 'react-router-dom'
-import Bienvenida from './Bienvenida'
-import Prueba from './Prueba'
-import Confirmacion from './Prueba/Confirmacion'
-import Reagendamiento from './Prueba/Reagendamiento'
+import Bienvenida from './components/Bienvenida'
+import Prueba from './components/Prueba'
+import Confirmacion from './components/Prueba/Confirmacion'
+import Reagendamiento from './components/Prueba/Reagendamiento'
 import './App.css'
+
+const pruebas = [
+  {
+    path: "confirmacion",
+    titulo: "¿Confirmas tu cita de mañana a las 5:00PM?",
+    componenteResultado: <Confirmacion />
+  },
+  {
+    path: "reagendamiento",
+    titulo: "¿Para cuándo quieres reagendar tu cita de mañana?",
+    componenteResultado: <Reagendamiento />
+  }
+]
 
 const App = () => {
   return (
@@ -11,24 +24,18 @@ const App = () => {
       <Routes>
         <Route index element={<Bienvenida />} />
         <Route path="prueba">
-          <Route
-            path="confirmacion"
-            element={
-              <Prueba
-                titulo="¿Confirmas tu cita de mañana a las 5:00PM?"
-                componenteResultado={<Confirmacion />}
-              />
-            }
-          />
-          <Route
-            path="reagendamiento"
-            element={
-              <Prueba
-                titulo="¿Para cuándo quieres reagendar tu cita de mañana?"
-                componenteResultado={<Reagendamiento />}
-              />
-            }
-          />
+          {pruebas.map(prueba => (
+            <Route
+              key={`route-prueba-${prueba.path}`}
+              path={prueba.path}
+              element={
+                <Prueba
+                  titulo={prueba.titulo}
+                  componenteResultado={prueba.componenteResultado}
+                />
+              }
+            />
+          ))}
         </Route>
       </Routes>
     </div>

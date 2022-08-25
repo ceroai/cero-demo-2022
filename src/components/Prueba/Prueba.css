@@ -1,0 +1,24 @@
+.Prueba {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+  height: 100vh;
+  place-items: center center;
+}
+
+.Prueba__contenedor_formulario {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 80%;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.Prueba__link_reinicio {
+  position: absolute;
+  bottom: 1rem;
+}
+
+.Prueba__contenedor_resultado {
+  place-self: center stretch;
+}
