@@ -4,13 +4,13 @@ const Confirmacion = () => {
   return (
     <div className="Confirmacion">
       <div>
-        Confirmar 100%
-        Anular 0%
-        Otro 0%
+        <div>Confirmar 100%</div>
+        <div>Anular 0%</div>
+        <div>Otro 0%</div>
       </div>
       <div>
         <h2>Intención</h2>
-        Equivocado 100%
+        <div>Equivocado 100%</div>
       </div>
     </div>
   )

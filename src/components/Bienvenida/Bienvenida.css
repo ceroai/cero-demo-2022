@@ -7,11 +7,13 @@
 
 .Bienvenida__hola {
   place-self: end center;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .Bienvenida__explicacion {
-  font-size: 2rem;
+  font-size: 3rem;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .Bienvenida__botones {

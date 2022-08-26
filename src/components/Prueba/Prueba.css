@@ -3,12 +3,26 @@
   grid-template: 1fr / 1fr 1fr;
   height: 100vh;
   place-items: center center;
+  gap: .5rem;
+}
+
+.Prueba__subtitulo {
+  opacity: .5;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.Prueba__titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.25;
 }
 
 .Prueba__contenedor_formulario {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1rem;
   width: 80%;
   font-size: 2rem;
   font-weight: bold;
@@ -22,4 +36,31 @@
 
 .Prueba__contenedor_resultado {
   place-self: center stretch;
+}
+
+.Prueba__textarea {
+  height: 30vh;
+  font-size: 2.5rem;
+  padding: 1rem;
+  resize: none;
+  border-radius: .25rem;
+  font-family: 'Roboto';
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 .1rem gray;
+  transition: all .25s ease;
+}
+
+.Prueba__textarea:focus {
+  box-shadow: 0 0 0 .25rem black;
+}
+
+.Prueba__boton_procesar {
+  background-color: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: normal;
+  align-self: flex-start;
 }

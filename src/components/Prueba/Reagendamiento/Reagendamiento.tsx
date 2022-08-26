@@ -7,51 +7,51 @@ import './Reagendamiento.css'
 const horas = {
   0: [],
   1: [
-    '10:00',
-    '12:00',
-    '14:00',
-    '16:00',
-    '18:00',
+    '09:00',
+    '11:00',
+    '13:00',
+    '15:00',
+    '17:00',
   ],
   2: [
-    '10:00',
-    '12:00',
-    '14:00',
-    '16:00',
-    '18:00',
+    '09:00',
+    '11:00',
+    '13:00',
+    '15:00',
+    '17:00',
   ],
   3: [
-    '10:00',
-    '12:00',
-    '14:00',
-    '16:00',
-    '18:00',
+    '09:00',
+    '11:00',
+    '13:00',
+    '15:00',
+    '17:00',
   ],
   4: [
-    '10:00',
-    '12:00',
-    '14:00',
-    '16:00',
-    '18:00',
+    '09:00',
+    '11:00',
+    '13:00',
+    '15:00',
+    '17:00',
   ],
   5: [
-    '10:00',
-    '12:00',
-    '14:00',
-    '16:00',
-    '18:00',
+    '09:00',
+    '11:00',
+    '13:00',
+    '15:00',
+    '17:00',
   ],
   6: [
-    '10:00',
-    '12:00',
-    '14:00',
+    '09:00',
+    '11:00',
+    '13:00',
   ]
 }
 
 const Reagendamiento = () => {
 
   const fechas = useMemo(() => {
-    const fin = addDays(endOfWeek(endOfMonth(addMonths(Date.now(), 13))), 1)
+    const fin = addDays(endOfWeek(endOfMonth(addMonths(Date.now(), 3))), 1)
     let fecha = startOfWeek(Date.now())
     const fechas = []
     while (!isSameDay(fecha, fin)) {
@@ -87,7 +87,7 @@ const Reagendamiento = () => {
                 "Reagendamiento__fecha--hoy": isToday(fecha),
               })}
             >
-            {format(fecha, getDate(fecha) === 1 && !isToday(fecha) ? 'd MMM' : 'd')}
+            {format(fecha, getDate(fecha) === 1 && !isToday(fecha) ? 'd MMMM' : 'd')}
             </div>
             <div className="Reagendamiento__contenedor_horas">
               {horas[getDay(fecha)].map((hora, j) => (

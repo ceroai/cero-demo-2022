@@ -66,6 +66,7 @@
 .Reagendamiento__fecha {
   font-size: .6rem;
   font-weight: 500;
+  opacity: .8;
 }
 
 .Reagendamiento__fecha--hoy {
