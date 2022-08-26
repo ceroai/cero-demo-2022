@@ -1,7 +1,9 @@
+import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
-import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, startOfWeek } from 'date-fns'
+import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
 import { addDays, endOfMonth } from 'date-fns/esm'
 import { useMemo } from 'react'
+import { useParams } from 'react-router-dom'
 import './Reagendamiento.css'
 
 const horas = {
@@ -48,7 +50,68 @@ const horas = {
   ]
 }
 
+const feriados = [
+  {
+    fecha: '2022-09-19',
+    motivo: 'Glorias del Ejército'
+  },
+  {
+    fecha: '2022-10-10',
+    motivo: 'Encuentro de Dos Mundos'
+  },
+  {
+    fecha: '2022-10-31',
+    motivo: 'Día de las Iglesias Evangélicas y Protestantes'
+  },
+  {
+    fecha: '2022-11-01',
+    motivo: 'Día de Todos los Santos'
+  },
+  {
+    fecha: '2022-12-08',
+    motivo: 'Inmaculada Concepción'
+  },
+  {
+    fecha: '2022-12-24',
+    motivo: 'Navidad'
+  },
+]
+
+const obtenerDisponibilidad = (consulta: string | undefined, fecha: Date, hora: string) => {
+  if (!consulta) {
+    return false
+  }
+  if (consulta.indexOf('xima semana') > 0) {
+    const esProximaSemana = isWithinInterval(fecha, { start: startOfWeek(addDays(Date.now(), 7)), end: endOfWeek(addDays(Date.now(), 7)) })
+    if (!esProximaSemana) {
+      return false
+    }
+    if (consulta.indexOf('tarde') > 0) {
+      return hora > '12'
+    }
+    else if (consulta.indexOf('mañana') > 0) {
+      return hora < '12'
+    }
+    return esProximaSemana
+  }
+  if (consulta.indexOf('subsiguiente') > 0) {
+    const esSemanaSubsiguiente = isWithinInterval(fecha, { start: startOfWeek(addDays(Date.now(), 14)), end: endOfWeek(addDays(Date.now(), 14)) })
+    if (!esSemanaSubsiguiente) {
+      return false
+    }
+    if (consulta.indexOf('tarde') > 0) {
+      return hora > '12'
+    }
+    else if (consulta.indexOf('mañana') > 0) {
+      return hora < '12'
+    }
+    return esSemanaSubsiguiente
+  }
+}
+
 const Reagendamiento = () => {
+
+  const { consulta } = useParams()
 
   const fechas = useMemo(() => {
     const fin = addDays(endOfWeek(endOfMonth(addMonths(Date.now(), 3))), 1)
@@ -61,8 +124,27 @@ const Reagendamiento = () => {
     return fechas
   }, [])
 
+  const horasDisponibles = useMemo(() => {
+    return fechas.map(fecha => {
+      const esFeriado = feriados.find(f => f.fecha === format(fecha, 'yyyy-MM-dd'))
+      return {
+        fecha,
+        horas: esFeriado
+         ? []
+         : horas[getDay(fecha)].map(hora => ({
+            hora,
+            disponible: obtenerDisponibilidad(consulta, fecha, hora)
+          }))
+      }
+    })
+  }, [consulta, fechas])
+
   return (
-    <div className="Reagendamiento">
+    <div className={classNames({
+      "Reagendamiento": true,
+      "Reagendamiento--visible": consulta,
+    })}>
+      <h1 className="Reagendamiento__consulta">"{consulta}"</h1>
       <div className="Reagendamiento__contenedor_titulos_dias">
         <div className="Reagendamiento__dia">Lun</div>
         <div className="Reagendamiento__dia">Mar</div>
@@ -73,7 +155,7 @@ const Reagendamiento = () => {
         <div className="Reagendamiento__dia">Dom</div>
       </div>
       <div className="Reagendamiento__calendario">
-        {fechas.map((fecha, i) => (
+        {horasDisponibles.map(({ fecha, horas }, i) => (
           <div
             key={`celda-calendario-${i}`}
             className={classNames({
@@ -90,13 +172,22 @@ const Reagendamiento = () => {
             {format(fecha, getDate(fecha) === 1 && !isToday(fecha) ? 'd MMMM' : 'd')}
             </div>
             <div className="Reagendamiento__contenedor_horas">
-              {horas[getDay(fecha)].map((hora, j) => (
+              {horas.map((hora, j) => (
                 <div
                   className="Reagendamiento__hora"
                   key={`hora-${i}-${j}`}
                 >
-                  <div className="Reagendamiento__circulito"/>
-                  {hora}
+                  <div
+                    className={classNames({
+                      "Reagendamiento__circulito": true,
+                      "Reagendamiento__circulito--disponible": hora.disponible
+                    })}
+                  />
+                  {hora.hora} {hora.disponible && (
+                    <span className="Reagendamiento__texto_disponible">
+                      Coincide <InlineIcon icon="mdi:check" />
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

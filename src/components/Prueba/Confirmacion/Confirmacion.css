@@ -1,18 +1,37 @@
 .Confirmacion {
   width: 45rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.Confirmacion--visible {
+  opacity: 1;
+}
+
+.Confirmacion__consulta {
+  font-size: 1.75rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-style: italic;
+  max-width: 30ch;
 }
 
 .Confirmacion__barras {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 
 .Confirmacion__titulo_barras_secundarias {
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-weight: bold;
   font-size: 1.5rem;
   border-top: .35rem solid lightgray;
   padding-top: 1rem;
+  width: 100%;
 }

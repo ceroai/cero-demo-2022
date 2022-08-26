@@ -19,7 +19,7 @@ const BarraConfirmacion = ({ barra, destacada = false } : { barra: Barra, destac
       <div
         className="BarraConfirmacion__porcentaje"
         style={{
-          boxShadow: `inset calc(-40rem * ${1 - barra.porcentaje / 100}) 0 white, 0 0 0 .1rem lightgray`
+          boxShadow: `inset calc(-30rem * ${1 - barra.porcentaje / 100}) 0 white, 0 0 0 .1rem lightgray`
         }}
       >
         {Math.round(barra.porcentaje) + '%'}

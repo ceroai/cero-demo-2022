@@ -1,14 +1,19 @@
 :root {
   font-size: 1vw;
   font-family: 'Roboto';
-  --color-oscuro: black;
+  --color-oscuro: rgba(0, 0, 0, .95);
   --color-texto-claro: white;
   --color-fondo-claro: white;
   --color-bordes: lightgray;
+  --color-sombras: rgba(0, 0, 0, .5);
+  --color-oscuro-hover: hsl(0, 0%, 25%);
+  --color-oscuro-active: hsl(0, 0%, 50%);
+  color: var(--color-oscuro);
 }
 
 *, *::after, *::before {
   box-sizing: border-box;
+  user-select: none;
 }
 
 a {
@@ -37,4 +42,13 @@ a {
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+}
+
+@keyframes aparece {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -8,25 +8,43 @@
 .Bienvenida__hola {
   place-self: end center;
   font-size: 3rem;
+  animation: aparece 1s ease both;
 }
 
 .Bienvenida__explicacion {
   font-size: 3rem;
   text-align: center;
   line-height: 1.5;
+  animation: aparece 1.5s 1s ease both;
 }
 
 .Bienvenida__botones {
   display: flex;
-  gap: 2rem;
+  gap: 4rem;
   place-self: start center;
+  animation: aparece 1.5s 2.5s ease both;
 }
 
 .Bienvenida__boton {
-  background-color: var(--color-oscuro);
+  background: var(--color-oscuro);
   color: var(--color-texto-claro);
-  padding: 2rem;
+  padding: 2rem 2.5rem;
   border-radius: 1rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: normal;
+  transition: all .25s ease;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Bienvenida__boton:hover {
+  box-shadow: 0 0 .25rem var(--color-sombras);
+  background: var(--color-oscuro-hover);
+}
+
+.Bienvenida__boton:active {
+  box-shadow: 0 0 .35rem var(--color-sombras);
+  background: var(--color-oscuro-active);
 }

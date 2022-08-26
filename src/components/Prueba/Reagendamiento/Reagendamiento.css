@@ -1,7 +1,24 @@
 .Reagendamiento {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100vh;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.Reagendamiento--visible {
+  opacity: 1;
+}
+
+.Reagendamiento__consulta {
+  font-size: 1.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+  max-width: 30ch;
+  min-height: 4rem;
 }
 
 .Reagendamiento__calendario {
@@ -11,11 +28,11 @@
   border-left: 1px solid var(--color-bordes);
   gap: 1px;
   flex: 1;
-  max-height: 100vh;
   overflow-x: visible;
   overflow-y: scroll;
   scrollbar-width: .5rem;
-  scrollbar-color: blue lightgray;
+  scrollbar-color: var(--color-oscuro) lightgray;
+  align-self: stretch;
 }
 
 .Reagendamiento__calendario::-webkit-scrollbar {
@@ -25,7 +42,7 @@
 
 .Reagendamiento__calendario::-webkit-scrollbar-thumb {
   border-radius: .15rem;
-  background-color: blue;
+  background-color: var(--color-oscuro);
 }
 
 .Reagendamiento__contenedor_titulos_dias {
@@ -37,8 +54,8 @@
   top: 0;
   z-index: 2;
   border-bottom: 1px solid var(--color-bordes);
-  border-left: 1px solid var(--color-bordes);
   padding-right: .5rem;
+  align-self: stretch;
 }
 
 .Reagendamiento__celda_calendario {
@@ -71,8 +88,8 @@
 
 .Reagendamiento__fecha--hoy {
   border-radius: 50%;
-  box-shadow: 0 0 0 .25rem blue;
-  background-color: blue;
+  box-shadow: 0 0 0 .25rem var(--color-oscuro);
+  background-color: var(--color-oscuro);
   color: var(--color-texto-claro);
   min-width: .5rem;
   min-height: .5rem;
@@ -95,8 +112,19 @@
 }
 
 .Reagendamiento__circulito {
-  width: .45rem;
-  height: .45rem;
+  width: .5rem;
+  height: .5rem;
   border-radius: 50%;
   background-color: lightgray;
+  transition: all .25s ease;
+}
+
+.Reagendamiento__circulito--disponible {
+  background-color: lightgreen;
+  box-shadow: 0 0 0 1px green;
+}
+
+.Reagendamiento__texto_disponible {
+  font-weight: 500;
+  color: green;
 }

@@ -28,11 +28,12 @@ const App = () => {
           {pruebas.map(prueba => (
             <React.Fragment key={`route-prueba-${prueba.path}`}>
               <Route
-                path={`${prueba.path}/:id`}
+                path={`${prueba.path}/:consulta`}
                 element={
                   <Prueba
                     titulo={prueba.titulo}
                     componenteResultado={prueba.componenteResultado}
+                    path={prueba.path}
                   />
                 }
               />
@@ -42,6 +43,7 @@ const App = () => {
                   <Prueba
                     titulo={prueba.titulo}
                     componenteResultado={prueba.componenteResultado}
+                    path={prueba.path}
                   />
                 }
               />

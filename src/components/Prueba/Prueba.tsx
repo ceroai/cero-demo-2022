@@ -1,8 +1,9 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Icon } from '@iconify/react';
 import './Prueba.css'
 
-const Prueba = ({ titulo, componenteResultado } : { titulo: String, componenteResultado: ReactNode }) => {
+const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, componenteResultado: ReactNode, path: string }) => {
 
   const [pregunta, setPregunta] = useState('')
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -23,8 +24,10 @@ const Prueba = ({ titulo, componenteResultado } : { titulo: String, componenteRe
         />
         <Link
           className="Prueba__boton_procesar"
-          to={pregunta}
+          to={`/prueba/${path}/${pregunta}`}
+          onClick={() => inputRef.current?.focus()}
         >
+          <Icon icon="mdi:robot" />
           Procesar
         </Link>
         {/* <button>Ejemplo</button> */}
@@ -36,7 +39,7 @@ const Prueba = ({ titulo, componenteResultado } : { titulo: String, componenteRe
         className="Prueba__link_reinicio"
         to="/"
       >
-        Reiniciar
+        <Icon icon="mdi:arrow-left" /> Volver
       </Link>
     </div>
   )
