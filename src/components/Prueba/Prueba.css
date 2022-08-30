@@ -54,7 +54,66 @@
   outline: none;
   box-shadow: 0 0 0 .1rem gray;
   transition: all .25s ease;
-  animation: aparece 2s .75s ease both;
+  animation: aparece 2s .35s ease both;
+}
+
+.Prueba__audio {
+  position: absolute;
+  width: 70%;
+  background-color: lightgray;
+  left: 1rem;
+  top: 1rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2.5rem 0 .5rem;
+  gap: .25rem;
+}
+
+.Prueba__audio_boton_play {
+  font-size: 3rem;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Prueba__audio_track {
+  flex: 1;
+  height: .35rem;
+  background: gray;
+  border-radius: 9in;
+  position: relative;
+  margin-left: .25rem;
+}
+
+.Prueba__audio_thumb {
+  width: 1rem;
+  height: 1rem;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  left: -.25rem;
+  top: -.25rem;
+}
+
+.Prueba__audio_duracion {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.Prueba__audio_boton_borrar {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: .1rem;
 }
 
 .Prueba__contenedor_botones_input {
@@ -63,6 +122,7 @@
   position: absolute;
   bottom: .5rem;
   left: .5rem;
+  animation: aparece 2s 1s ease both;
 }
 
 .Prueba__boton_input {
@@ -82,11 +142,11 @@
   display: flex;
   gap: .25rem;
   background-color: rgba(0, 0, 0, .15);
-  padding: .25rem .65rem .45rem;
+  padding: .25rem .75rem .5rem;
   border-radius: 9in;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(.25rem);
+  transform: translateY(.5rem);
   transition: all .25s ease;
 }
 
@@ -130,7 +190,7 @@
   align-items: center;
   gap: 1rem;
   align-self: flex-start;
-  animation: aparece 2s 2s ease both;
+  animation: aparece 2s 1.5s ease both;
 }
 
 .Prueba__boton_procesar:hover {

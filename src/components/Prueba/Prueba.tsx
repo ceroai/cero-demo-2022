@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react'
 import './Prueba.css'
 import classNames from 'classnames'
 import OutsideClickHandler from 'react-outside-click-handler'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 const emojis = [
   {
@@ -56,6 +57,12 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
 
   const [pregunta, setPregunta] = useState('')
   const [modalEmojisVisible, setModalEmojisVisible] = useState(false)
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -72,8 +79,26 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             onChange={e => setPregunta(e.target.value)}
             value={pregunta}
             ref={inputRef}
+            disabled={transcript !== ''}
             placeholder="Escribe tu respuesta"
           />
+          {transcript && !listening && (
+            <div className="Prueba__audio">
+              <button className="Prueba__audio_boton_play">
+                <Icon icon="mdi:play" />
+              </button>
+              <div className="Prueba__audio_track">
+                <div className="Prueba__audio_thumb" />
+              </div>
+              <div className="Prueba__audio_duracion">1:02</div>
+              <button className="Prueba__audio_boton_borrar">
+                <Icon icon="mdi:close" />
+              </button>
+            </div>
+          )}
+          {listening && (
+            <div>Habla</div>
+          )}
           <div className="Prueba__contenedor_botones_input">
             <button
               className="Prueba__boton_input"
@@ -83,6 +108,17 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             </button>
             <button
               className="Prueba__boton_input"
+              onClick={() => {
+                if (listening) {
+                  SpeechRecognition.stopListening()
+                  setPregunta(transcript)
+                }
+                else {
+                  resetTranscript()
+                  setPregunta('')
+                  SpeechRecognition.startListening()
+                }
+              }}
             >
               <Icon icon="mdi:volume-high" />
             </button>
