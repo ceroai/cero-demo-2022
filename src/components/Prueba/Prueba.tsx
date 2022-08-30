@@ -1,8 +1,9 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Icon } from '@iconify/react';
+import { Icon } from '@iconify/react'
 import './Prueba.css'
-import classNames from 'classnames';
+import classNames from 'classnames'
+import OutsideClickHandler from 'react-outside-click-handler'
 
 const emojis = [
   {
@@ -69,7 +70,6 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
           <textarea
             className="Prueba__textarea"
             onChange={e => setPregunta(e.target.value)}
-            onClick={() => setModalEmojisVisible(false)}
             value={pregunta}
             ref={inputRef}
             placeholder="Escribe tu respuesta"
@@ -87,26 +87,28 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
               <Icon icon="mdi:volume-high" />
             </button>
           </div>
-          <div
-            className={classNames({
-              "Prueba__modal_emojis": true,
-              "Prueba__modal_emojis--visible": modalEmojisVisible
-            })}
-          >
-            {emojis.map((emoji, i) => (
-              <button
-                key={`emoji-${i}`}
-                title={emoji.alt}
-                className="Prueba__modal_emojis_boton"
-                onClick={() => {
-                  setPregunta(prev => prev + emoji.emoji)
-                  inputRef.current?.focus()
-                }}
-              >
-                {emoji.emoji}
-              </button>
-            ))}
-          </div>
+          <OutsideClickHandler onOutsideClick={() => setModalEmojisVisible(false)}>
+            <div
+              className={classNames({
+                "Prueba__modal_emojis": true,
+                "Prueba__modal_emojis--visible": modalEmojisVisible
+              })}
+            >
+              {emojis.map((emoji, i) => (
+                <button
+                  key={`emoji-${i}`}
+                  title={emoji.alt}
+                  className="Prueba__modal_emojis_boton"
+                  onClick={() => {
+                    setPregunta(prev => prev + emoji.emoji)
+                    inputRef.current?.focus()
+                  }}
+                >
+                  {emoji.emoji}
+                </button>
+              ))}
+            </div>
+          </OutsideClickHandler>
         </div>
         <Link
           className="Prueba__boton_procesar"
