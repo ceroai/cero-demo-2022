@@ -6,19 +6,11 @@
   gap: .5rem;
 }
 
-.Prueba__subtitulo {
-  color: rgba(0, 0, 0, .75);
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.25;
-  animation: aparece 1.25s ease both;
-}
-
 .Prueba__titulo {
   font-size: 2.5rem;
   font-weight: bold;
   line-height: 1.25;
-  animation: aparece 1.25s 1.25s ease both;
+  animation: aparece 1.25s 0s ease both;
 }
 
 .Prueba__contenedor_formulario {
@@ -55,7 +47,11 @@
   outline: none;
   box-shadow: 0 0 0 .1rem gray;
   transition: all .25s ease;
-  animation: aparece 2s 2s ease both;
+  animation: aparece 2s .75s ease both;
+}
+
+.Prueba__textarea::placeholder {
+  opacity: .25;
 }
 
 .Prueba__textarea:focus {

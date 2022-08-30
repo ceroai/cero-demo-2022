@@ -15,12 +15,12 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
   return (
     <div className="Prueba">
       <div className="Prueba__contenedor_formulario">
-        <h2 className="Prueba__subtitulo">¿Cómo responderías la siguiente pregunta?</h2>
         <h1 className="Prueba__titulo">{titulo}</h1>
         <textarea
           className="Prueba__textarea"
           onChange={e => setPregunta(e.target.value)}
           ref={inputRef}
+          placeholder="Escribe tu respuesta"
         />
         <Link
           className="Prueba__boton_procesar"
