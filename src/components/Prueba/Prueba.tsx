@@ -60,8 +60,7 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
   const {
     transcript,
     listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
+    resetTranscript
   } = useSpeechRecognition();
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -79,10 +78,10 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             onChange={e => setPregunta(e.target.value)}
             value={pregunta}
             ref={inputRef}
-            disabled={transcript !== ''}
-            placeholder="Escribe tu respuesta"
+            // disabled={listening || transcript !== ''}
+            placeholder={listening ? "Habla" : "Escribe tu respuesta"}
           />
-          {transcript && !listening && (
+          {false && transcript && !listening && (
             <div className="Prueba__audio">
               <button className="Prueba__audio_boton_play">
                 <Icon icon="mdi:play" />
@@ -91,13 +90,17 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
                 <div className="Prueba__audio_thumb" />
               </div>
               <div className="Prueba__audio_duracion">1:02</div>
-              <button className="Prueba__audio_boton_borrar">
+              <button
+                className="Prueba__audio_boton_borrar"
+                onClick={() => {
+                  inputRef.current?.focus()
+                  setPregunta('')
+                  resetTranscript()
+                }}
+              >
                 <Icon icon="mdi:close" />
               </button>
             </div>
-          )}
-          {listening && (
-            <div>Habla</div>
           )}
           <div className="Prueba__contenedor_botones_input">
             <button
