@@ -39,7 +39,7 @@ const Confirmacion = () => {
       "Confirmacion": true,
       "Confirmacion--visible": consulta,
     })}>
-      <h1 className="Confirmacion__consulta">"{consulta}"</h1>
+      <h1 className="Confirmacion__consulta">{consulta ? `"${consulta}"` : <>&nbsp;</>}</h1>
       <div className="Confirmacion__barras">
         {barrasPrincipales.map((barra, i) => (
           <BarraConfirmacion

@@ -1,7 +1,7 @@
 import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
-import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
-import { addDays, endOfMonth } from 'date-fns/esm'
+import { endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
+import { addDays, endOfMonth, startOfMonth } from 'date-fns/esm'
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import './Reagendamiento.css'
@@ -114,8 +114,8 @@ const Reagendamiento = () => {
   const { consulta } = useParams()
 
   const fechas = useMemo(() => {
-    const fin = addDays(endOfWeek(endOfMonth(addMonths(Date.now(), 3))), 1)
-    let fecha = startOfWeek(Date.now())
+    const fin = addDays(endOfWeek(endOfMonth(endOfWeek((Date.now())))), 1)
+    let fecha = startOfWeek(startOfMonth(endOfWeek(Date.now())))
     const fechas = []
     while (!isSameDay(fecha, fin)) {
       fechas.push(fecha)
@@ -144,7 +144,22 @@ const Reagendamiento = () => {
       "Reagendamiento": true,
       "Reagendamiento--visible": consulta,
     })}>
-      <h1 className="Reagendamiento__consulta">"{consulta}"</h1>
+      <h1 className="Reagendamiento__consulta">{consulta ? `"${consulta}"` : <>&nbsp;</>}</h1>
+      <div className="Reagendamiento__herramientas">
+        <button
+          className="Reagendamiento__boton_navegacion_meses"
+          title="Mes anterior"
+        >
+          <InlineIcon icon="mdi:chevron-left" />
+        </button>
+        <button
+          className="Reagendamiento__boton_navegacion_meses"
+          title="Mes siguiente"
+        >
+          <InlineIcon icon="mdi:chevron-right" />
+        </button>
+        <p>Septiembre 2022</p>
+      </div>
       <div className="Reagendamiento__contenedor_titulos_dias">
         <div className="Reagendamiento__dia">Lun</div>
         <div className="Reagendamiento__dia">Mar</div>
@@ -183,9 +198,15 @@ const Reagendamiento = () => {
                       "Reagendamiento__circulito--disponible": hora.disponible
                     })}
                   />
-                  {hora.hora} {hora.disponible && (
+                  <span className={classNames({
+                    "Reagendamiento__texto_hora": true,
+                    "Reagendamiento__texto_hora--disponible": hora.disponible,
+                  })}>
+                    {hora.hora}
+                  </span>
+                   {hora.disponible && (
                     <span className="Reagendamiento__texto_disponible">
-                      Coincide <InlineIcon icon="mdi:check" />
+                      <InlineIcon icon="mdi:check" />
                     </span>
                   )}
                 </div>
