@@ -1,0 +1,10 @@
+.App {
+  background: linear-gradient(
+    45deg,
+    var(--color-rojo) 0 25%,
+    var(--color-azul),
+    var(--color-purpura) 75%
+  );
+  background-size: 400% 400%;
+  animation: mueve-fondo 25s ease-in-out infinite;
+}

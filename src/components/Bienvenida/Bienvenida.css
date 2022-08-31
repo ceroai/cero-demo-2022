@@ -2,20 +2,23 @@
   display: grid;
   place-items: center center;
   height: 100vh;
-  font-weight: bold;
 }
 
 .Bienvenida__hola {
   place-self: end center;
-  font-size: 3rem;
+  font-size: 3.5rem;
   animation: aparece 1s ease both;
+  color: var(--color-blanco);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 }
 
 .Bienvenida__explicacion {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
   line-height: 1.5;
   animation: aparece 1.5s 1s ease both;
+  color: var(--color-blanco);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 }
 
 .Bienvenida__botones {
@@ -26,22 +29,31 @@
 }
 
 .Bienvenida__boton {
-  background: var(--color-oscuro);
+  background: rgb(250, 250, 250);
   color: var(--color-texto-claro);
-  padding: 2rem 2.5rem;
-  border-radius: 1rem;
-  font-size: 2.5rem;
+  padding: 2.25rem 2.5rem;
+  border-radius: 9in;
+  font-size: 3rem;
   font-weight: normal;
   transition: all .25s ease;
-  box-shadow: none;
+  box-shadow: 0 0 1rem rgba(255, 255, 255, .1);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  color: var(--color-negro);
+  gap: 1.25rem;
 }
 
-.Bienvenida__boton:hover {
-  box-shadow: 0 0 .25rem var(--color-sombras);
-  background: var(--color-oscuro-hover);
+.Bienvenida__boton--reagendamiento {
+  padding-left: 3rem;
+}
+
+.Bienvenida__boton:hover, .Bienvenida__boton:focus {
+  background: rgb(255, 255, 255);
+  box-shadow:
+    0 0 2rem rgba(255, 255, 255, .25),
+    0 0 1rem rgba(255, 255, 255, .1),
+    0 0 2.5rem rgba(255, 255, 255, .5);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.1);
 }
 
 .Bienvenida__boton:active {

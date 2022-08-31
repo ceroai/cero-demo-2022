@@ -8,9 +8,10 @@
 
 .Prueba__titulo {
   font-size: 2.5rem;
-  font-weight: bold;
   line-height: 1.25;
   animation: aparece 1.25s 0s ease both;
+  color: var(--color-blanco);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 }
 
 .Prueba__contenedor_formulario {
@@ -19,7 +20,6 @@
   gap: 1rem;
   width: 80%;
   font-size: 2rem;
-  font-weight: bold;
 }
 
 .Prueba__link_reinicio {

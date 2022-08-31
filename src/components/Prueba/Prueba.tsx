@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import './Prueba.css'
 import classNames from 'classnames'
@@ -63,10 +63,15 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
     resetTranscript
   } = useSpeechRecognition();
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
+
+  useEffect(() => {
+    navigate(`/prueba/${path}/${pregunta}`)
+  }, [navigate, path, pregunta])
 
   return (
     <div className="Prueba">
@@ -149,14 +154,14 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             </div>
           </OutsideClickHandler>
         </div>
-        <Link
+        {/* <Link
           className="Prueba__boton_procesar"
           to={`/prueba/${path}/${pregunta}`}
           onClick={() => inputRef.current?.focus()}
         >
           <Icon icon="mdi:robot" />
           Procesar
-        </Link>
+        </Link> */}
         {/* <button>Ejemplo</button> */}
       </div>
       <div className="Prueba__contenedor_resultado">

@@ -19,7 +19,7 @@ const Bienvenida = () => {
           Confirmaciones
         </Link>
         <Link
-          className="Bienvenida__boton"
+          className="Bienvenida__boton Bienvenida__boton--reagendamiento"
           to="/prueba/reagendamiento"
         >
           <Icon icon="mdi:calendar-export" />

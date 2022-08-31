@@ -9,6 +9,14 @@
   --color-oscuro-hover: hsl(0, 0%, 25%);
   --color-oscuro-active: hsl(0, 0%, 50%);
   color: var(--color-oscuro);
+  
+  --color-rojo: #ed3324;
+  --color-azul: #005bf1;
+  --color-purpura: #a506e9;
+  --color-verde: #00d200;
+  --color-texto: black;
+  --color-blanco: white;
+  --color-negro: black;
 }
 
 *, *::after, *::before {
@@ -50,5 +58,17 @@ a {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes mueve-fondo {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
   }
 }
