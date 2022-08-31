@@ -4,7 +4,7 @@ import Prueba from './components/Prueba'
 import Confirmacion from './components/Prueba/Confirmacion'
 import Reagendamiento from './components/Prueba/Reagendamiento'
 import './App.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const pruebas = [
   {
@@ -19,9 +19,34 @@ const pruebas = [
   }
 ]
 
+const T_ESTABLE = 30_000
+const T_FINAL = 2_000
+const TICK = 20
+
 const App = () => {
+
+  const [timer, setTimer] = useState(0)
+
+  useEffect(() => {
+    const avanzarTimer = setInterval(() => {
+      setTimer(prev => prev + TICK)
+    }, TICK)
+    return () => clearInterval(avanzarTimer)
+  }, [])
+
+  useEffect(() => {
+    if (timer > T_ESTABLE + T_FINAL) {
+      window.location.href = '/'
+    }
+  }, [timer])
+
   return (
-    <div className="App">
+    <div
+      className="App"
+      onKeyDown={() => setTimer(0)}
+      onMouseMove={() => setTimer(0)}
+    >
+      <p style={{ position: 'fixed' }}>{timer / 1000}</p>
       <Routes>
         <Route index element={<Bienvenida />} />
         <Route path="prueba">
@@ -51,6 +76,12 @@ const App = () => {
           ))}
         </Route>
       </Routes>
+      <div
+        className="App__progreso"
+        style={{
+          background: `linear-gradient(90deg, white 0 ${100 * Math.max(0, (timer - T_ESTABLE) / T_FINAL)}%, transparent 0)`
+        }}
+      />
     </div>
   )
 }

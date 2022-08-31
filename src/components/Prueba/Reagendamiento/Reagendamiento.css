@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh);
   opacity: 0;
   transition: all 1s ease;
 }
@@ -43,6 +43,15 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: all .25s ease;
+}
+
+.Reagendamiento__boton_navegacion_meses:disabled {
+  opacity: .5;
+}
+
+.Reagendamiento__texto_mes {
+  margin-left: .25rem;
 }
 
 .Reagendamiento__texto_mes::first-letter {

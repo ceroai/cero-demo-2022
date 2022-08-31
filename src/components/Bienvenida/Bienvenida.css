@@ -1,7 +1,15 @@
 .Bienvenida {
   display: grid;
   place-items: center center;
-  height: 100vh;
+  flex: 1;
+}
+
+.Bienvenida__cerebro {
+  font-size: 45rem;
+  position: absolute;
+  opacity: .5;
+  display: flex;
+  transform: scale(1.5);
 }
 
 .Bienvenida__hola {
@@ -10,6 +18,10 @@
   animation: aparece 1s ease both;
   color: var(--color-blanco);
   text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
+}
+
+.Bienvenida__logo {
+  transform: translate(.5rem, .2rem);
 }
 
 .Bienvenida__explicacion {

@@ -1,9 +1,9 @@
 .Prueba {
   display: grid;
   grid-template: 1fr / 1fr 1fr;
-  height: 100vh;
   place-items: center center;
   gap: .5rem;
+  flex: 1;
 }
 
 .Prueba__titulo {

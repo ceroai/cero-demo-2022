@@ -152,6 +152,7 @@ const Reagendamiento = () => {
           className="Reagendamiento__boton_navegacion_meses"
           title="Mes anterior"
           onClick={() => setDesfaseMes(prev => Math.max(0, prev -1))}
+          disabled={desfaseMes === 0}
         >
           <InlineIcon icon="mdi:chevron-left" />
         </button>
