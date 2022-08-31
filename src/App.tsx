@@ -19,9 +19,9 @@ const pruebas = [
   }
 ]
 
-const T_ESTABLE = 30_000
-const T_FINAL = 2_000
-const TICK = 20
+const T_ESTABLE_MS = 120_000
+const T_FINAL_MS = 3_000
+const TICK_MS = 20
 
 const App = () => {
 
@@ -29,13 +29,13 @@ const App = () => {
 
   useEffect(() => {
     const avanzarTimer = setInterval(() => {
-      setTimer(prev => prev + TICK)
-    }, TICK)
+      setTimer(prev => prev + TICK_MS)
+    }, TICK_MS)
     return () => clearInterval(avanzarTimer)
   }, [])
 
   useEffect(() => {
-    if (timer > T_ESTABLE + T_FINAL) {
+    if (timer > T_ESTABLE_MS + T_FINAL_MS) {
       window.location.href = '/'
     }
   }, [timer])
@@ -46,7 +46,7 @@ const App = () => {
       onKeyDown={() => setTimer(0)}
       onMouseMove={() => setTimer(0)}
     >
-      <p style={{ position: 'fixed' }}>{timer / 1000}</p>
+      {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
       <Routes>
         <Route index element={<Bienvenida />} />
         <Route path="prueba">
@@ -79,7 +79,7 @@ const App = () => {
       <div
         className="App__progreso"
         style={{
-          background: `linear-gradient(90deg, white 0 ${100 * Math.max(0, (timer - T_ESTABLE) / T_FINAL)}%, transparent 0)`
+          background: `linear-gradient(90deg, white 0 ${100 * Math.max(0, (timer - T_ESTABLE_MS) / T_FINAL_MS)}%, transparent 0)`
         }}
       />
     </div>

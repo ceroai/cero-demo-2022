@@ -6,7 +6,7 @@ import './Bienvenida.css'
 const Bienvenida = () => {
   return (
     <div className="Bienvenida">
-      <p className="Bienvenida__cerebro">🧠</p>
+      {/* <p className="Bienvenida__cerebro">🧠</p> */}
       <h1 className="Bienvenida__hola">Hola <span className="Bienvenida__mano">👋</span></h1>
       <h1 className="Bienvenida__explicacion">
         Te invitamos a probar<br />
@@ -24,8 +24,16 @@ const Bienvenida = () => {
           className="Bienvenida__boton Bienvenida__boton--reagendamiento"
           to="/prueba/reagendamiento"
         >
-          <Icon icon="mdi:calendar-export" />
+          <Icon icon="mdi:calendar-end" />
           Reagendamientos
+        </Link>
+        <Link
+          className="Bienvenida__boton Bienvenida__boton--agendamiento"
+          to="/"
+        >
+          <Icon icon="mdi:calendar-clock" />
+          Agendamientos
+          <span>Próximamente...</span>
         </Link>
       </div>
     </div>

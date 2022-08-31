@@ -35,9 +35,13 @@
 
 .Bienvenida__botones {
   display: flex;
-  gap: 4rem;
+  gap: 2rem 2rem;
   place-self: start center;
   animation: aparece 1.5s 2.5s ease both;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 80%;
 }
 
 .Bienvenida__boton {
@@ -59,6 +63,22 @@
   padding-left: 3rem;
 }
 
+.Bienvenida__boton--agendamiento {
+  opacity: .35;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.Bienvenida__boton--agendamiento span {
+  position: absolute;
+  font-style: italic;
+  right: 2.5rem;
+  bottom: 1rem;
+  font-size: 1.35rem;
+  opacity: .8;
+  font-weight: bold;
+}
+
 .Bienvenida__boton:hover, .Bienvenida__boton:focus {
   background: rgb(255, 255, 255);
   box-shadow:
@@ -70,7 +90,6 @@
 
 .Bienvenida__boton:active {
   box-shadow: 0 0 .35rem var(--color-sombras);
-  background: var(--color-oscuro-active);
 }
  
 .Bienvenida__mano {
