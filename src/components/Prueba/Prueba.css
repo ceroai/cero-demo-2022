@@ -58,7 +58,6 @@
   font-family: 'Roboto';
   border: none;
   outline: none;
-  box-shadow: 0 0 0 .1rem gray;
   transition: all .25s ease;
   animation: aparece 2s .35s ease both;
 }
@@ -180,7 +179,7 @@
 }
 
 .Prueba__textarea:focus {
-  box-shadow: 0 0 0 .25rem rgb(240, 240, 240), 0 0 1rem white;
+  box-shadow: 0 0 1rem white;
 }
 
 .Prueba__boton_procesar {

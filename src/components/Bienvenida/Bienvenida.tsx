@@ -5,7 +5,7 @@ import './Bienvenida.css'
 const Bienvenida = () => {
   return (
     <div className="Bienvenida">
-      <h1 className="Bienvenida__hola">Hola 👋</h1>
+      <h1 className="Bienvenida__hola">Hola <span className="Bienvenida__mano">👋</span></h1>
       <h1 className="Bienvenida__explicacion">
         En esta interfaz puedes probar<br />
         el “cerebro” de Cero.AI

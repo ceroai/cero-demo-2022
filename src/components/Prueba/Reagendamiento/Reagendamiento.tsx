@@ -1,8 +1,8 @@
 import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
-import { endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
+import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
 import { addDays, endOfMonth, startOfMonth } from 'date-fns/esm'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './Reagendamiento.css'
 
@@ -112,17 +112,19 @@ const obtenerDisponibilidad = (consulta: string | undefined, fecha: Date, hora: 
 const Reagendamiento = () => {
 
   const { consulta } = useParams()
+  const [desfaseMes, setDesfaseMes] = useState(0)
 
   const fechas = useMemo(() => {
-    const fin = addDays(endOfWeek(endOfMonth(endOfWeek((Date.now())))), 1)
-    let fecha = startOfWeek(startOfMonth(endOfWeek(Date.now())))
+    const fechaBase = addMonths(Date.now(), desfaseMes)
+    const fin = addDays(endOfWeek(endOfMonth(endOfWeek((fechaBase)))), 1)
+    let fecha = startOfWeek(startOfMonth(endOfWeek(fechaBase)))
     const fechas = []
     while (!isSameDay(fecha, fin)) {
       fechas.push(fecha)
       fecha = addDays(fecha, 1)
     }
     return fechas
-  }, [])
+  }, [desfaseMes])
 
   const horasDisponibles = useMemo(() => {
     return fechas.map(fecha => {
@@ -149,16 +151,20 @@ const Reagendamiento = () => {
         <button
           className="Reagendamiento__boton_navegacion_meses"
           title="Mes anterior"
+          onClick={() => setDesfaseMes(prev => Math.max(0, prev -1))}
         >
           <InlineIcon icon="mdi:chevron-left" />
         </button>
         <button
           className="Reagendamiento__boton_navegacion_meses"
           title="Mes siguiente"
+          onClick={() => setDesfaseMes(prev => prev + 1)}
         >
           <InlineIcon icon="mdi:chevron-right" />
         </button>
-        <p>Septiembre 2022</p>
+        <p className="Reagendamiento__texto_mes">
+          {format(endOfWeek(fechas[0]), 'MMMM yyyy')}
+        </p>
       </div>
       <div className="Reagendamiento__contenedor_titulos_dias">
         <div className="Reagendamiento__dia">Lun</div>

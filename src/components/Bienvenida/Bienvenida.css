@@ -60,3 +60,27 @@
   box-shadow: 0 0 .35rem var(--color-sombras);
   background: var(--color-oscuro-active);
 }
+ 
+.Bienvenida__mano {
+  display: inline-flex;
+  transform-origin: 105% 105%;
+  animation: saludar 15s ease infinite both;
+}
+
+@keyframes saludar {
+  0% {
+    transform: rotate(0);
+  }
+  90% {
+    transform: rotate(0);
+  }
+  93.5% {
+    transform: rotate(25deg);
+  }
+  98% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
