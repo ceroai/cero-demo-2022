@@ -12,10 +12,12 @@
 }
 
 .Confirmacion__consulta {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   margin-bottom: 3rem;
   text-align: center;
-  max-width: 30ch;
+  max-width: calc(100% - 5rem);
+  color: var(--color-blanco);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 }
 
 .Confirmacion__barras {
@@ -28,9 +30,9 @@
 .Confirmacion__titulo_barras_secundarias {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-  border-top: .35rem solid lightgray;
+  font-size: 2rem;
   padding-top: 1rem;
   width: 100%;
+  color: var(--color-blanco);
+  text-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5);
 }

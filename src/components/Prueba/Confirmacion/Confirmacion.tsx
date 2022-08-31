@@ -1,3 +1,4 @@
+import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'

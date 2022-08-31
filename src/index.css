@@ -17,6 +17,8 @@
   --color-texto: black;
   --color-blanco: white;
   --color-negro: black;
+
+  --color-gris-claro: hsl(4, 85%, 84%);
 }
 
 *, *::after, *::before {
