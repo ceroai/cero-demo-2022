@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { setDefaultOptions } from 'date-fns'
 import es from 'date-fns/esm/locale/es/index.js'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,10 +17,14 @@ setDefaultOptions({
   locale: es
 })
 
+const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
     <Router >
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </Router>
   </React.StrictMode>
 )

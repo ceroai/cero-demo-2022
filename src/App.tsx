@@ -5,11 +5,12 @@ import Confirmacion from './components/Prueba/Confirmacion'
 import Reagendamiento from './components/Prueba/Reagendamiento'
 import './App.css'
 import React, { useEffect, useState } from 'react'
+import ModalContacto from './ModalContacto'
 
 const pruebas = [
   {
     path: "confirmacion",
-    titulo: "¿Confirmas tu cita para mañana a las 5:00PM?",
+    titulo: "¿Confirmas tu cita para mañana a las 5:00 PM?",
     componenteResultado: <Confirmacion />
   },
   {
@@ -46,6 +47,7 @@ const App = () => {
       onKeyDown={() => setTimer(0)}
       onMouseMove={() => setTimer(0)}
     >
+      <ModalContacto />
       {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
       <Routes>
         <Route index element={<Bienvenida />} />

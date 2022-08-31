@@ -1,0 +1,22 @@
+.ModalContacto {
+  position: absolute;
+  background-color: var(--color-blanco);
+  top: 3rem;
+  left: 3rem;
+  right: 3rem;
+  bottom: 3rem;
+  z-index: 3;
+}
+
+.ModalContacto__titulo {
+  font-size: 3rem;
+}
+
+.ModalContacto__formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.ModalContacto__boton {
+  font-size: 3rem;
+}
