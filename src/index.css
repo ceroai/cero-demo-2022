@@ -76,3 +76,9 @@ a {
     background-position: 0 50%;
   }
 }
+
+@media (orientation: portrait) {
+  :root {
+    font-size: 2.25vw;
+  }
+}

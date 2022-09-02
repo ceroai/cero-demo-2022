@@ -22,6 +22,7 @@
 
 .Bienvenida__logo {
   transform: translate(.5rem, .2rem);
+  width: 11rem;
 }
 
 .Bienvenida__explicacion {

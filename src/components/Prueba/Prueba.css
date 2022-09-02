@@ -202,3 +202,14 @@
   box-shadow: 0 0 .25rem var(--color-sombras);
   background: var(--color-oscuro-hover);
 }
+
+@media (orientation: portrait) {
+  .Prueba {
+    grid-template: 1fr 1fr / 1fr;
+    padding: 5rem 2rem;
+  }
+
+  .Prueba__titulo {
+    text-align: center;
+  }
+}

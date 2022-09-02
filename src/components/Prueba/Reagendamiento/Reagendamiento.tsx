@@ -163,9 +163,9 @@ const Reagendamiento = () => {
         >
           <InlineIcon icon="mdi:chevron-right" />
         </button>
-        <p className="Reagendamiento__texto_mes">
+        <div className="Reagendamiento__texto_mes">
           {format(endOfWeek(fechas[0]), 'MMMM yyyy')}
-        </p>
+        </div>
       </div>
       <div className="Reagendamiento__contenedor_titulos_dias">
         <div className="Reagendamiento__dia">Lun</div>
@@ -177,50 +177,55 @@ const Reagendamiento = () => {
         <div className="Reagendamiento__dia">Dom</div>
       </div>
       <div className="Reagendamiento__calendario">
-        {horasDisponibles.map(({ fecha, horas }, i) => (
-          <div
-            key={`celda-calendario-${i}`}
-            className={classNames({
-              "Reagendamiento__celda_calendario": true,
-              "Reagendamiento__celda_calendario--pasado": isPast(endOfDay(fecha))
-            })}
-          >
+        {horasDisponibles.map(({ fecha, horas }, i) => {
+          const infoFeriado = feriados.find(f => f.fecha === format(fecha, 'yyyy-MM-dd'))
+          return (
             <div
+              key={`celda-calendario-${i}`}
               className={classNames({
-                "Reagendamiento__fecha": true,
-                "Reagendamiento__fecha--hoy": isToday(fecha),
+                "Reagendamiento__celda_calendario": true,
+                "Reagendamiento__celda_calendario--pasado": isPast(endOfDay(fecha))
               })}
             >
-            {format(fecha, getDate(fecha) === 1 && !isToday(fecha) ? 'd MMMM' : 'd')}
-            </div>
-            <div className="Reagendamiento__contenedor_horas">
-              {horas.map((hora, j) => (
-                <div
-                  className="Reagendamiento__hora"
-                  key={`hora-${i}-${j}`}
-                >
+              {/* {infoFeriado && <div className="Reagendamiento__fecha_motivo">{infoFeriado.motivo}</div>} */}
+              <div
+                className={classNames({
+                  "Reagendamiento__fecha": true,
+                  "Reagendamiento__fecha--hoy": isToday(fecha),
+                  "Reagendamiento__fecha--feriado": getDay(fecha) === 0 || infoFeriado
+                })}
+              >
+                {format(fecha, getDate(fecha) === 1 && !isToday(fecha) ? 'd MMMM' : 'd')}
+              </div>
+              <div className="Reagendamiento__contenedor_horas">
+                {horas.map((hora, j) => (
                   <div
-                    className={classNames({
-                      "Reagendamiento__circulito": true,
-                      "Reagendamiento__circulito--disponible": hora.disponible
-                    })}
-                  />
-                  <span className={classNames({
-                    "Reagendamiento__texto_hora": true,
-                    "Reagendamiento__texto_hora--disponible": hora.disponible,
-                  })}>
-                    {hora.hora}
-                  </span>
-                   {hora.disponible && (
-                    <span className="Reagendamiento__texto_disponible">
-                      <InlineIcon icon="mdi:check" />
+                    className="Reagendamiento__hora"
+                    key={`hora-${i}-${j}`}
+                  >
+                    <div
+                      className={classNames({
+                        "Reagendamiento__circulito": true,
+                        "Reagendamiento__circulito--disponible": hora.disponible
+                      })}
+                    />
+                    <span className={classNames({
+                      "Reagendamiento__texto_hora": true,
+                      "Reagendamiento__texto_hora--disponible": hora.disponible,
+                    })}>
+                      {hora.hora}
                     </span>
-                  )}
-                </div>
-              ))}
+                    {hora.disponible && (
+                      <span className="Reagendamiento__texto_disponible">
+                        <InlineIcon icon="mdi:check" />
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

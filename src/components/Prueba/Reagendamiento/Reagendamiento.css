@@ -38,6 +38,7 @@
   color: var(--color-blanco);
   border: none;
   padding: 0;
+  width: auto;
   filter: drop-shadow(0 0 .25rem rgba(0, 0, 0, 0.5));
   font-size: 1.75rem;
   cursor: pointer;
@@ -124,6 +125,17 @@
   font-size: .8rem;
   font-weight: 500;
   opacity: .8;
+  position: relative;
+}
+
+.Reagendamiento__fecha_motivo {
+  position: absolute;
+  width: calc(90% - 1rem);
+  left: 1rem;
+  text-align: center;
+  top: 1.25rem;
+  font-size: .8rem;
+  color: var(--color-rojo);
 }
 
 .Reagendamiento__fecha--hoy {
@@ -131,8 +143,13 @@
   box-shadow: 0 0 0 .3rem var(--color-azul);
   background-color: var(--color-azul);
   color: var(--color-texto-claro);
-  min-width: .5rem;
-  min-height: .5rem;
+  min-width: .75rem;
+  min-height: .75rem;
+  text-align: center;
+}
+
+.Reagendamiento__fecha--feriado {
+  color: var(--color-rojo);
 }
 
 .Reagendamiento__contenedor_horas {
