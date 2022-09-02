@@ -140,6 +140,10 @@
   cursor: pointer;
 }
 
+.Prueba__boton_input--microfono-abierto {
+  color: var(--color-rojo);
+}
+
 .Prueba__modal_emojis {
   position: absolute;
   bottom: 3.5rem;

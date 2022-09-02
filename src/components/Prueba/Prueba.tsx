@@ -69,6 +69,12 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
     inputRef.current?.focus()
   }, [])
 
+
+  useEffect(() => {
+    setPregunta(transcript)
+    inputRef.current?.focus()
+  }, [transcript])
+
   useEffect(() => {
     navigate(`/prueba/${path}/${pregunta}`)
   }, [navigate, path, pregunta])
@@ -115,7 +121,10 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
               <Icon icon="mdi:emoticon" />
             </button>
             <button
-              className="Prueba__boton_input"
+              className={classNames({
+                "Prueba__boton_input": true,
+                "Prueba__boton_input--microfono-abierto": listening
+              })}
               onClick={() => {
                 if (listening) {
                   SpeechRecognition.stopListening()
@@ -128,7 +137,7 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
                 }
               }}
             >
-              <Icon icon="mdi:volume-high" />
+              <Icon icon="mdi:microphone" />
             </button>
           </div>
           <OutsideClickHandler onOutsideClick={() => setModalEmojisVisible(false)}>
