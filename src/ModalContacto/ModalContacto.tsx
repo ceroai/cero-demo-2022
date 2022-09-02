@@ -11,7 +11,7 @@ const ModalContacto = () => {
   const mutation = useMutation(data => (
     axios.post('https://southamerica-east1-ceroai.cloudfunctions.net/submit-contact-form', data)
   ))
-  const [modalActivo, setModalActivo] = useState(true)
+  const [modalActivo, setModalActivo] = useState(false)
 
   const enviar = async (data: any) => {
     mutation.mutate(data)
