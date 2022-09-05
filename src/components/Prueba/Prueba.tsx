@@ -69,7 +69,6 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
     inputRef.current?.focus()
   }, [])
 
-
   useEffect(() => {
     setPregunta(transcript)
     inputRef.current?.focus()
@@ -163,15 +162,6 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             </div>
           </OutsideClickHandler>
         </div>
-        {/* <Link
-          className="Prueba__boton_procesar"
-          to={`/prueba/${path}/${pregunta}`}
-          onClick={() => inputRef.current?.focus()}
-        >
-          <Icon icon="mdi:robot" />
-          Procesar
-        </Link> */}
-        {/* <button>Ejemplo</button> */}
       </div>
       <div className="Prueba__contenedor_resultado">
         {componenteResultado}

@@ -1,38 +1,87 @@
-import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
-import { useMemo } from 'react'
+import { useState, useEffect } from 'react'
+import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
+import { confirmacion } from '../../../api/api'
 import BarraConfirmacion from './BarraConfirmacion'
+import { Barra } from './BarraConfirmacion/BarraConfirmacion'
 import './Confirmacion.css'
+
+const traducirEtiquetaOtro = (etiqueta: string) => {
+  switch (etiqueta) {
+    case 'CONFIRMA_DESPUES':
+      return 'Confirma más tarde'
+    case 'EQUIVOCADO':
+      return 'Número equivocado'
+    case 'IN_CONTRADICCION':
+      return 'Contradicción'
+    case 'OUT':
+      return 'Sin información'
+    case 'PC_DIRECCION':
+      return 'Pregunta por dirección'
+    case 'PC_PRECIO':
+      return 'Pregunta por valores'
+    case 'REAGENDA':
+      return 'Reagenda'
+    case 'SMALL_TALK':
+      return 'Plática informal'
+    case 'YA_CONFIRMO':
+      return 'Sin información'
+    default:
+      return etiqueta
+  }
+}
 
 const Confirmacion = () => {
 
   const { consulta } = useParams()
-  
-  const [barrasPrincipales, barrasSecundarias] = useMemo(() => {
-    return [
+  const { data } = useQuery(
+    ['confirmacion', consulta],
+    () => confirmacion(consulta || '')
+  )
+  const [barras, setBarras] = useState<[Barra[], Barra[]]>([[
+    {
+      texto: 'Confirma',
+      porcentaje: 0
+    },
+    {
+      texto: 'Anula',
+      porcentaje: 0
+    },
+    {
+      texto: 'Otro',
+      porcentaje: 100
+    }
+  ], []])
+  const [barrasPrincipales, barrasSecundarias] = barras
+
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+    setBarras([
       [
         {
-          texto: 'Confirmar',
-          porcentaje: 100 * Math.random()
+          texto: 'Confirma',
+          porcentaje: 100 * data.data.etiquetas_confirmacion.yes
         },
         {
-          texto: 'Anular',
-          porcentaje: 100 * Math.random()
+          texto: 'Anula',
+          porcentaje: 100 * data.data.etiquetas_confirmacion.no
         },
         {
           texto: 'Otro',
-          porcentaje: 100 * Math.random()
-        },
+          porcentaje: 100 * data.data.etiquetas_confirmacion.out
+        }
       ],
-      [
+      Object.keys(data.data.etiquetas_otro).map(etiqueta => (
         {
-          texto: 'Pregunta precio',
-          porcentaje: 100 * Math.random()
-        },
-      ]
-    ]
-  }, [consulta])
+          texto: traducirEtiquetaOtro(etiqueta),
+          porcentaje: 100 * data.data.etiquetas_otro[etiqueta]
+        }
+      ))
+    ])
+  }, [data])
 
   return (
     <div className={classNames({
@@ -51,13 +100,19 @@ const Confirmacion = () => {
       </div>
       <h2 className="Confirmacion__titulo_barras_secundarias">Intención</h2>
       <div className="Confirmacion__barras">
-        {barrasSecundarias.map((barra, i) => (
-          <BarraConfirmacion
-            key={`barra-secundaria-confirmacion-${i}`}
-            barra={barra}
-            destacada={barrasSecundarias.reduce((x, y) => Math.max(x, y.porcentaje), 0) === barra.porcentaje}
-          />
-        ))}
+        {barrasSecundarias.length > 0
+          ? barrasSecundarias.map((barra, i) => (
+            <BarraConfirmacion
+              key={`barra-secundaria-confirmacion-${i}`}
+              barra={barra}
+              destacada={barrasSecundarias.reduce((x, y) => Math.max(x, y.porcentaje), 0) === barra.porcentaje}
+            />
+          ))
+          : <BarraConfirmacion 
+              barra={{ porcentaje: -1, texto: '-' }}
+              destacada={false}
+            />
+        }
       </div>
     </div>
   )

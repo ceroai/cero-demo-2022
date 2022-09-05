@@ -22,7 +22,7 @@ const pruebas = [
 
 const T_ESTABLE_MS = 120_000
 const T_FINAL_MS = 3_000
-const TICK_MS = 20
+const TICK_MS = 1_000
 
 const App = () => {
 

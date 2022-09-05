@@ -22,7 +22,7 @@ const BarraConfirmacion = ({ barra, destacada = false } : { barra: Barra, destac
           boxShadow: `inset calc(-30rem * ${1 - barra.porcentaje / 100}) 0 white`
         }}
       >
-        {Math.round(barra.porcentaje) + '%'}
+        {barra.porcentaje < 0 ? <>&nbsp;</> : `${Math.round(barra.porcentaje)}%`}
       </div>
     </div>
   )
