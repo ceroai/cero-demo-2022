@@ -193,3 +193,9 @@
 .Reagendamiento__texto_disponible {
   color: green;
 }
+
+@media (max-width: 1024px) {
+  .Reagendamiento__consulta {
+    display: none;
+  }
+}

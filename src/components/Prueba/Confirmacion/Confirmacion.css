@@ -38,8 +38,19 @@
   border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1024px) {
+
+  .Confirmacion {
+    width: 100%;
+    align-items: flex-start;
+  }
+
   .Confirmacion__consulta {
     display: none;
+  }
+
+  .Confirmacion__titulo_barras_secundarias {
+    text-align: center;
+    border-top: none;
   }
 }

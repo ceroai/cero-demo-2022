@@ -47,7 +47,7 @@ const App = () => {
       onKeyDown={() => setTimer(0)}
       onMouseMove={() => setTimer(0)}
     >
-      <ModalContacto />
+      {/* <ModalContacto /> */}
       {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
       <Routes>
         <Route index element={<Bienvenida />} />
@@ -78,12 +78,6 @@ const App = () => {
           ))}
         </Route>
       </Routes>
-      <div
-        className="App__progreso"
-        style={{
-          background: `linear-gradient(90deg, white 0 ${100 * Math.max(0, (timer - T_ESTABLE_MS) / T_FINAL_MS)}%, transparent 0)`
-        }}
-      />
     </div>
   )
 }

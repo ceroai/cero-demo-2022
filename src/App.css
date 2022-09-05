@@ -11,13 +11,3 @@
   flex-direction: column;
   height: 100vh;
 }
-
-.App__progreso {
-  height: .25rem;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  transition: all .1s ease;
-  z-index: 2;
-  opacity: 0;
-}

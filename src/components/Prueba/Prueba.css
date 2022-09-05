@@ -207,13 +207,35 @@
   background: var(--color-oscuro-hover);
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1024px) {
   .Prueba {
-    grid-template: 1fr 1fr / 1fr;
-    padding: 5rem 2rem;
+    grid-template: auto 1fr / 1fr;
+    padding: 4rem 0 0 0;
+    place-items: start center;
+    gap: 2rem;
   }
 
   .Prueba__titulo {
     text-align: center;
+  }
+
+  .Prueba__contenedor_textarea {
+    height: 100%;
+  }
+
+  .Prueba__contenedor_botones_input {
+    display: none;
+  }
+
+  .Prueba__contenedor_resultado {
+    place-self: start stretch;
+  }
+
+  .Prueba__modal_emojis {
+    display: none;
+  }
+
+  .Prueba__link_reinicio {
+    display: none;
   }
 }
