@@ -3,7 +3,9 @@ import classNames from 'classnames'
 import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
 import { addDays, endOfMonth, startOfMonth } from 'date-fns/esm'
 import { useMemo, useState } from 'react'
+import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
+import { reagendamiento } from '../../../api/api'
 import './Reagendamiento.css'
 
 const horas = {
@@ -113,6 +115,12 @@ const Reagendamiento = () => {
 
   const { consulta } = useParams()
   const [desfaseMes, setDesfaseMes] = useState(0)
+  const { data } = useQuery(
+    ['reagendamiento', consulta],
+    () => reagendamiento(consulta || '')
+  )
+
+  console.log(data)
 
   const fechas = useMemo(() => {
     const fechaBase = addMonths(Date.now(), desfaseMes)
