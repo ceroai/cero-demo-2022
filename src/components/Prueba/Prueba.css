@@ -207,6 +207,11 @@
   background: var(--color-oscuro-hover);
 }
 
+.Prueba__link_reinicio--movil {
+  display: none;
+  font-size: 2.5rem;
+}
+
 @media (max-width: 1024px) {
   .Prueba {
     grid-template: auto 1fr / 1fr;
@@ -237,5 +242,9 @@
 
   .Prueba__link_reinicio {
     display: none;
+  }
+
+  .Prueba__link_reinicio--movil {
+    display: flex;
   }
 }

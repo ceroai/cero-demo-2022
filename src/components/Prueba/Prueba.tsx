@@ -172,6 +172,12 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
       >
         <Icon icon="mdi:arrow-left" /> Volver
       </Link>
+      <Link
+        className="Prueba__link_reinicio Prueba__link_reinicio--movil"
+        to="/"
+      >
+        <Icon icon="mdi:arrow-left" />
+      </Link>
     </div>
   )
 }
