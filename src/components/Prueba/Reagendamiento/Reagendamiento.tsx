@@ -2,7 +2,7 @@ import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
 import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
 import { addDays, endOfMonth, startOfMonth } from 'date-fns/esm'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { reagendamiento } from '../../../api/api'
@@ -80,35 +80,7 @@ const feriados = [
 ]
 
 const obtenerDisponibilidad = (consulta: string | undefined, fecha: Date, hora: string) => {
-  if (!consulta) {
-    return false
-  }
-  if (consulta.indexOf('xima semana') > 0) {
-    const esProximaSemana = isWithinInterval(fecha, { start: startOfWeek(addDays(Date.now(), 7)), end: endOfWeek(addDays(Date.now(), 7)) })
-    if (!esProximaSemana) {
-      return false
-    }
-    if (consulta.indexOf('tarde') > 0) {
-      return hora > '12'
-    }
-    else if (consulta.indexOf('mañana') > 0) {
-      return hora < '12'
-    }
-    return esProximaSemana
-  }
-  if (consulta.indexOf('subsiguiente') > 0) {
-    const esSemanaSubsiguiente = isWithinInterval(fecha, { start: startOfWeek(addDays(Date.now(), 14)), end: endOfWeek(addDays(Date.now(), 14)) })
-    if (!esSemanaSubsiguiente) {
-      return false
-    }
-    if (consulta.indexOf('tarde') > 0) {
-      return hora > '12'
-    }
-    else if (consulta.indexOf('mañana') > 0) {
-      return hora < '12'
-    }
-    return esSemanaSubsiguiente
-  }
+  return true
 }
 
 const Reagendamiento = () => {
@@ -119,8 +91,13 @@ const Reagendamiento = () => {
     ['reagendamiento', consulta],
     () => reagendamiento(consulta || '')
   )
-
-  console.log(data)
+  const [horasDisponibles, setHorasDisponibles] = useState<{
+    fecha: Date,
+    horas: {
+      hora: string,
+      disponible: boolean
+    }[]
+  }[]>([])
 
   const fechas = useMemo(() => {
     const fechaBase = addMonths(Date.now(), desfaseMes)
@@ -134,8 +111,8 @@ const Reagendamiento = () => {
     return fechas
   }, [desfaseMes])
 
-  const horasDisponibles = useMemo(() => {
-    return fechas.map(fecha => {
+  useEffect(() => {
+    setHorasDisponibles(fechas.map(fecha => {
       const esFeriado = feriados.find(f => f.fecha === format(fecha, 'yyyy-MM-dd'))
       return {
         fecha,
@@ -146,7 +123,7 @@ const Reagendamiento = () => {
             disponible: obtenerDisponibilidad(consulta, fecha, hora)
           }))
       }
-    })
+    }))
   }, [consulta, fechas])
 
   return (
