@@ -9,8 +9,8 @@ const Bienvenida = () => {
       {/* <p className="Bienvenida__cerebro">🧠</p> */}
       <h1 className="Bienvenida__hola">Hola <span className="Bienvenida__mano">👋</span></h1>
       <h1 className="Bienvenida__explicacion">
-        Te invitamos a probar<br />
-        el cerebro de <img src={logo} className="Bienvenida__logo" alt='Logo Cero' />
+        Te invitamos a interactuar <br />
+        con el cerebro de <img src={logo} className="Bienvenida__logo" alt='Logo Cero' />
       </h1>
       <div className="Bienvenida__botones">
         <Link

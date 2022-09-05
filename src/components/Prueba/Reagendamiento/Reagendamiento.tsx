@@ -35,16 +35,19 @@ const feriados = [
   },
 ]
 
-const obtenerDisponibilidad = (fecha: Date, date_spec: { 0: string, 1: string | null, 2: string | null }[]) => {
-  const fechaEnDateSpec = date_spec?.find(d => isSameDay(parse(d[0], 'yyyy-MM-dd', new Date()), fecha))
-  if (!fechaEnDateSpec) {
+const obtenerDisponibilidad = (fecha: Date, date_spec: { 0: string | null, 1: string | null, 2: string | null }[]) => {
+  let fechaEnDateSpec = date_spec?.find(d => isSameDay(parse(d[0] || '', 'yyyy-MM-dd', new Date()), fecha))
+  if (!fechaEnDateSpec && (!date_spec || date_spec.some(d => d[0]))) {
     return []
+  }
+  else if (!fechaEnDateSpec) {
+    fechaEnDateSpec = date_spec.find(d => !d[0]) as { 0: null, 1: string, 2: string }
   }
   const { 1: horaInicial, 2: horaFinal } = fechaEnDateSpec
   if (!horaInicial && !horaFinal) {
     return ['Todo el día']
   }
-  const horas = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  const horas = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
   if (!horaInicial && horaFinal) {
     return horas.filter(h => h < parse(horaFinal, 'HH:mm:ss', new Date()).getHours()).map(hora => (
       format(parse(hora.toString(), 'H', new Date()), 'HH:mm')

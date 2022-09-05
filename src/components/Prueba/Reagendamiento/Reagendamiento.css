@@ -71,6 +71,7 @@
   scrollbar-color: var(--color-oscuro) lightgray;
   align-self: stretch;
   border-top-left-radius: .5rem;
+  transition: all 1s ease;
 }
 
 .Reagendamiento__calendario::-webkit-scrollbar {
