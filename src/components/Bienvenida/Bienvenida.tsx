@@ -4,6 +4,7 @@ import logo from '../../assets/images/logo_blanco.png'
 import './Bienvenida.css'
 
 const Bienvenida = () => {
+
   return (
     <div className="Bienvenida">
       {/* <p className="Bienvenida__cerebro">🧠</p> */}

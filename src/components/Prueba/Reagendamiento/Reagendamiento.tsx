@@ -59,7 +59,6 @@ const obtenerDisponibilidad = (fecha: Date, date_spec: { 0: string | null, 1: st
     ))
   }
   else if (horaInicial && horaFinal) {
-    console.log(horaInicial, horaFinal)
     return [format(parse(horaInicial, 'HH:mm:ss', new Date()), 'HH:mm')]
   }
   return []
