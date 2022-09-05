@@ -1,56 +1,12 @@
 import { InlineIcon } from '@iconify/react'
 import classNames from 'classnames'
-import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, isWithinInterval, startOfWeek } from 'date-fns'
+import { addMonths, endOfDay, endOfWeek, format, getDate, getDay, isPast, isSameDay, isToday, parse, startOfWeek } from 'date-fns'
 import { addDays, endOfMonth, startOfMonth } from 'date-fns/esm'
 import { useMemo, useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { reagendamiento } from '../../../api/api'
 import './Reagendamiento.css'
-
-const horas = {
-  0: [],
-  1: [
-    '09:00',
-    '11:00',
-    '13:00',
-    '15:00',
-    '17:00',
-  ],
-  2: [
-    '09:00',
-    '11:00',
-    '13:00',
-    '15:00',
-    '17:00',
-  ],
-  3: [
-    '09:00',
-    '11:00',
-    '13:00',
-    '15:00',
-    '17:00',
-  ],
-  4: [
-    '09:00',
-    '11:00',
-    '13:00',
-    '15:00',
-    '17:00',
-  ],
-  5: [
-    '09:00',
-    '11:00',
-    '13:00',
-    '15:00',
-    '17:00',
-  ],
-  6: [
-    '09:00',
-    '11:00',
-    '13:00',
-  ]
-}
 
 const feriados = [
   {
@@ -79,8 +35,31 @@ const feriados = [
   },
 ]
 
-const obtenerDisponibilidad = (consulta: string | undefined, fecha: Date, hora: string) => {
-  return true
+const obtenerDisponibilidad = (fecha: Date, date_spec: { 0: string, 1: string | null, 2: string | null }[]) => {
+  const fechaEnDateSpec = date_spec?.find(d => isSameDay(parse(d[0], 'yyyy-MM-dd', new Date()), fecha))
+  if (!fechaEnDateSpec) {
+    return []
+  }
+  const { 1: horaInicial, 2: horaFinal } = fechaEnDateSpec
+  if (!horaInicial && !horaFinal) {
+    return ['Todo el día']
+  }
+  const horas = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  if (!horaInicial && horaFinal) {
+    return horas.filter(h => h < parse(horaFinal, 'HH:mm:ss', new Date()).getHours()).map(hora => (
+      format(parse(hora.toString(), 'H', new Date()), 'HH:mm')
+    ))
+  }
+  else if (horaInicial && !horaFinal) {
+    return horas.filter(h => h >= parse(horaInicial, 'HH:mm:ss', new Date()).getHours()).map(hora => (
+      format(parse(hora.toString(), 'H', new Date()), 'HH:mm')
+    ))
+  }
+  else if (horaInicial && horaFinal) {
+    console.log(horaInicial, horaFinal)
+    return [format(parse(horaInicial, 'HH:mm:ss', new Date()), 'HH:mm')]
+  }
+  return []
 }
 
 const Reagendamiento = () => {
@@ -93,10 +72,7 @@ const Reagendamiento = () => {
   )
   const [horasDisponibles, setHorasDisponibles] = useState<{
     fecha: Date,
-    horas: {
-      hora: string,
-      disponible: boolean
-    }[]
+    horas: string[]
   }[]>([])
 
   const fechas = useMemo(() => {
@@ -112,19 +88,16 @@ const Reagendamiento = () => {
   }, [desfaseMes])
 
   useEffect(() => {
+    if (!data) {
+      return
+    }
     setHorasDisponibles(fechas.map(fecha => {
-      const esFeriado = feriados.find(f => f.fecha === format(fecha, 'yyyy-MM-dd'))
       return {
         fecha,
-        horas: esFeriado
-         ? []
-         : horas[getDay(fecha)].map(hora => ({
-            hora,
-            disponible: obtenerDisponibilidad(consulta, fecha, hora)
-          }))
+        horas: obtenerDisponibilidad(fecha, data.data.date_spec)
       }
     }))
-  }, [consulta, fechas])
+  }, [fechas, data])
 
   return (
     <div className={classNames({
@@ -191,20 +164,18 @@ const Reagendamiento = () => {
                     <div
                       className={classNames({
                         "Reagendamiento__circulito": true,
-                        "Reagendamiento__circulito--disponible": hora.disponible
+                        "Reagendamiento__circulito--disponible": true
                       })}
                     />
                     <span className={classNames({
                       "Reagendamiento__texto_hora": true,
-                      "Reagendamiento__texto_hora--disponible": hora.disponible,
+                      "Reagendamiento__texto_hora--disponible": true,
                     })}>
-                      {hora.hora}
+                      {hora}
                     </span>
-                    {hora.disponible && (
-                      <span className="Reagendamiento__texto_disponible">
-                        <InlineIcon icon="mdi:check" />
-                      </span>
-                    )}
+                    <span className="Reagendamiento__texto_disponible">
+                      <InlineIcon icon="mdi:check" />
+                    </span>
                   </div>
                 ))}
               </div>
