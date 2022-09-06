@@ -6,6 +6,7 @@ import Reagendamiento from './components/Prueba/Reagendamiento'
 import './App.css'
 import React, { useEffect, useState } from 'react'
 import ModalContacto from './ModalContacto'
+import Div100vh from 'react-div-100vh'
 
 const pruebas = [
   {
@@ -42,43 +43,46 @@ const App = () => {
   }, [timer])
 
   return (
-    <div
-      className="App"
-      onKeyDown={() => setTimer(0)}
-      onMouseMove={() => setTimer(0)}
-    >
-      {/* <ModalContacto /> */}
-      {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
-      <Routes>
-        <Route index element={<Bienvenida />} />
-        <Route path="prueba">
-          {pruebas.map(prueba => (
-            <React.Fragment key={`route-prueba-${prueba.path}`}>
-              <Route
-                path={`${prueba.path}/:consulta`}
-                element={
-                  <Prueba
-                    titulo={prueba.titulo}
-                    componenteResultado={prueba.componenteResultado}
-                    path={prueba.path}
-                  />
-                }
-              />
-              <Route
-                path={prueba.path}
-                element={
-                  <Prueba
-                    titulo={prueba.titulo}
-                    componenteResultado={prueba.componenteResultado}
-                    path={prueba.path}
-                  />
-                }
-              />
-            </React.Fragment>
-          ))}
-        </Route>
-      </Routes>
-    </div>
+    <Div100vh>
+      <div
+        className="App"
+        onKeyDown={() => setTimer(0)}
+        onMouseMove={() => setTimer(0)}
+      >
+        {/* <ModalContacto /> */}
+        {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
+        <Routes>
+          <Route index element={<Bienvenida />} />
+          <Route path="prueba">
+            {pruebas.map(prueba => (
+              <React.Fragment key={`route-prueba-${prueba.path}`}>
+                <Route
+                  path={`${prueba.path}/:consulta`}
+                  element={
+                    <Prueba
+                      titulo={prueba.titulo}
+                      componenteResultado={prueba.componenteResultado}
+                      path={prueba.path}
+                    />
+                  }
+                />
+                <Route
+                  path={prueba.path}
+                  element={
+                    <Prueba
+                      titulo={prueba.titulo}
+                      componenteResultado={prueba.componenteResultado}
+                      path={prueba.path}
+                    />
+                  }
+                />
+              </React.Fragment>
+            ))}
+          </Route>
+        </Routes>
+      </div>
+
+    </Div100vh>
   )
 }
 
