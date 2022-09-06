@@ -5,6 +5,7 @@ import './Prueba.css'
 import classNames from 'classnames'
 import OutsideClickHandler from 'react-outside-click-handler'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import _ from 'lodash'
 
 const emojis = [
   {
@@ -52,6 +53,81 @@ const emojis = [
     alt: 'aprobación'
   }
 ]
+
+const ejemplosConfirmacion = [
+  'Confirmo mi hora',
+  'Confirmo mi cita',
+  'Anulo mi hora',
+  'Cuanto cuesta la consulta',
+  'Si',
+  '👍',
+  'No',
+  'La confirmo',
+  'La cancelo avísele al doctor',
+  'Se puede pagar por fonasa',
+  'Yo no he sacado hora',
+  'Este no es mi numero',
+  'Te digo más tarde',
+]
+
+const ejemplosDiaReagendamiento = [
+  'Cualquier día',
+  'Cualquier día',
+  'Todos los días',
+  'Mañana',
+  'La proxima semana',
+  'El lunes',
+  'El martes',
+  'El miércoles',
+  'El jueves',
+  'El viernes',
+  'El sábado de la próxima semana',
+  'El lunes de la próxima semana',
+  'El martes de la próxima semana',
+  'El miércoles de la próxima semana',
+  'El jueves de la próxima semana',
+  'El viernes de la próxima semana',
+  'El sábado de la próxima semana',
+]
+
+const ejemplosHoraReagendamiento = [
+  'en la tarde',
+  'en la mañana',
+  'después de las 11',
+  'después de las 12',
+  'después de la 1',
+  'después de las 2',
+  'después de las 3',
+  'después de las 4',
+  'después de las 5',
+  'antes de las 9',
+  'antes de las 10',
+  'antes de las 11',
+  'antes de las 12',
+  'antes de la 1',
+  'antes de la 1',
+  'antes de las 2',
+  'antes de las 3',
+  'a las 10:00',
+  'a las 11:00',
+  'a las 12:00',
+  'a las 13:00',
+  'a las 14:00',
+  'a las 15:00',
+  'a las 16:00',
+  'a las 17:00',
+  'a las 18:00',
+  'a las 19:00',
+]
+
+const obtenerEjemplo = (path: string) => {
+  if (path === 'confirmacion') {
+    return _.sample(ejemplosConfirmacion) || ''
+  }
+  else {
+    return (_.sample(ejemplosDiaReagendamiento) + ' ' +_.sample(ejemplosHoraReagendamiento)) || ''
+  }
+}
 
 const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, componenteResultado: ReactNode, path: string }) => {
 
@@ -160,6 +236,12 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
               ))}
             </div>
           </OutsideClickHandler>
+          <button
+            className="Prueba__boton_ejemplo"
+            onClick={() => setPregunta(obtenerEjemplo(path))}
+          >
+            Usar un ejemplo
+          </button>
         </div>
       </div>
       <div className="Prueba__contenedor_resultado">

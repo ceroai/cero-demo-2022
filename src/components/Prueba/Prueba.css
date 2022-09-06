@@ -212,6 +212,29 @@
   font-size: 2.5rem;
 }
 
+.Prueba__boton_ejemplo {
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  background: var(--color-negro);
+  color: var(--color-blanco);
+  padding: .5rem 1rem;
+  border-radius: 9in;
+  font-size: 1.1rem;
+  font-weight: normal;
+  transition: all .25s ease;
+  box-shadow: 0 0 1rem rgba(255, 255, 255, .1);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  cursor: pointer;
+  animation: aparece 2s 1.5s ease both;
+}
+
+.Prueba__boton_ejemplo:active {
+  background: var(--color-oscuro-hover);
+}
+
 @media (max-width: 1024px) {
   .Prueba {
     grid-template: auto 1fr / 1fr;
@@ -246,5 +269,9 @@
 
   .Prueba__link_reinicio--movil {
     display: flex;
+  }
+
+  .Prueba__boton_ejemplo {
+    display: none;
   }
 }
