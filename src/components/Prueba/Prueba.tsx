@@ -238,7 +238,10 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
           </OutsideClickHandler>
           <button
             className="Prueba__boton_ejemplo"
-            onClick={() => setPregunta(obtenerEjemplo(path))}
+            onClick={() => {
+              setPregunta(obtenerEjemplo(path))
+              inputRef.current?.focus()
+            }}
           >
             Usar un ejemplo
           </button>
