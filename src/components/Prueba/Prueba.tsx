@@ -75,7 +75,7 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
   }, [transcript])
 
   useEffect(() => {
-    navigate(`/prueba/${path}/${pregunta.replaceAll('/', '%2F')}`)
+    navigate(`/prueba/${path}/${encodeURIComponent(pregunta)}`)
   }, [navigate, path, pregunta])
 
   return (
