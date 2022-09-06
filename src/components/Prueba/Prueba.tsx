@@ -88,7 +88,6 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
             onChange={e => setPregunta(e.target.value)}
             value={pregunta}
             ref={inputRef}
-            // disabled={listening || transcript !== ''}
             placeholder={listening ? "Habla" : "Escribe tu respuesta"}
           />
           {false && transcript && !listening && (

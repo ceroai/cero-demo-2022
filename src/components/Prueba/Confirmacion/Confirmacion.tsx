@@ -21,8 +21,16 @@ const traducirEtiquetaOtro = (etiqueta: string) => {
       return 'Pregunta por dirección'
     case 'PC_PRECIO':
       return 'Pregunta por valores'
+    case 'PC_SEGURO':
+      return 'Pregunta por forma de pago o seguro de salud'
+    case 'QUIERE_HABLAR':
+      return 'Necesita atención'
     case 'REAGENDA':
       return 'Reagenda'
+    case 'REAGENDA_SOFT':
+      return 'Pregunta por cambio de horario'
+    case 'RESPUESTA_AUTO':
+      return 'Respuesta automática'
     case 'SMALL_TALK':
       return 'Plática informal'
     case 'YA_CONFIRMO':
