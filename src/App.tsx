@@ -4,8 +4,7 @@ import Prueba from './components/Prueba'
 import Confirmacion from './components/Prueba/Confirmacion'
 import Reagendamiento from './components/Prueba/Reagendamiento'
 import './App.css'
-import React, { useEffect, useState } from 'react'
-import ModalContacto from './ModalContacto'
+import React from 'react'
 import Div100vh from 'react-div-100vh'
 
 const pruebas = [
@@ -21,36 +20,11 @@ const pruebas = [
   }
 ]
 
-const T_ESTABLE_MS = 300_000
-const T_FINAL_MS = 3_000
-const TICK_MS = 1_000
-
 const App = () => {
-
-  const [timer, setTimer] = useState(0)
-
-  useEffect(() => {
-    const avanzarTimer = setInterval(() => {
-      setTimer(prev => prev + TICK_MS)
-    }, TICK_MS)
-    return () => clearInterval(avanzarTimer)
-  }, [])
-
-  useEffect(() => {
-    if (timer > T_ESTABLE_MS + T_FINAL_MS) {
-      window.location.href = '/'
-    }
-  }, [timer])
 
   return (
     <Div100vh>
-      <div
-        className="App"
-        onKeyDown={() => setTimer(0)}
-        onMouseMove={() => setTimer(0)}
-      >
-        {/* <ModalContacto /> */}
-        {/* <p style={{ position: 'fixed' }}>{timer / 1000}</p> */}
+      <div className="App">
         <Routes>
           <Route index element={<Bienvenida />} />
           <Route path="prueba">
