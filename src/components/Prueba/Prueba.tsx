@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import OutsideClickHandler from 'react-outside-click-handler'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import _ from 'lodash'
+import useTimer from '../../hooks/useTimer'
 
 const emojis = [
   {
@@ -154,8 +155,21 @@ const Prueba = ({ titulo, componenteResultado, path } : { titulo: string, compon
     navigate(`/prueba/${path}/${encodeURIComponent(pregunta)}`)
   }, [navigate, path, pregunta])
 
+  const { resetTimer: resetTimerEjemplo, done: doneTimerEjemplo } = useTimer(60_000)
+
+  useEffect(() => {
+    if (doneTimerEjemplo) {
+      setPregunta(obtenerEjemplo(path))
+      resetTimerEjemplo()
+    }
+  }, [doneTimerEjemplo, path, pregunta, resetTimerEjemplo])
+
   return (
-    <div className="Prueba">
+    <div
+      className="Prueba"
+      onKeyDown={() => resetTimerEjemplo()}
+      onMouseMove={() => resetTimerEjemplo()}
+    >
       <div className="Prueba__contenedor_formulario">
         <h1 className="Prueba__titulo">{titulo}</h1>
         <div className="Prueba__contenedor_textarea">

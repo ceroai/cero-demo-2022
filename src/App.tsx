@@ -21,7 +21,7 @@ const pruebas = [
   }
 ]
 
-const T_ESTABLE_MS = 120_000
+const T_ESTABLE_MS = 300_000
 const T_FINAL_MS = 3_000
 const TICK_MS = 1_000
 
