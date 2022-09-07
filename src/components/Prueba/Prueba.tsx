@@ -56,19 +56,25 @@ const emojis = [
 ]
 
 const ejemplosConfirmacion = [
-  'Confirmo mi hora',
+  'Por supuesto',
   'Confirmo mi cita',
   'Anulo mi hora',
   'Cuanto cuesta la consulta',
-  'Si',
-  '👍',
-  'No',
-  'La confirmo',
+  'Esta lloviendo me voy a quedar durmiendo en la casa',
+  '👍👍',
+  'Puedo correrla para mas tardecito?',
+  'Sii gracias por el recordatorio, se me habia olvidado',
   'La cancelo avísele al doctor',
   'Se puede pagar por fonasa',
   'Yo no he sacado hora',
   'Este no es mi numero',
   'Te digo más tarde',
+  'mm pero tengo anotado que mi hora era a las 4',
+  'Cuanto cuesta la consulta?',
+  'pucha justo a esa hora me pusieron una reunion',
+  'ohh se me habia olvidado, no voy a poder :( lo siento',
+  'te puedo confirmar en la tarde?',
+  'donde queda el centro?',
 ]
 
 const ejemplosDiaReagendamiento = [

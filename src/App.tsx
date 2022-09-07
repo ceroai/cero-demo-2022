@@ -55,7 +55,6 @@ const App = () => {
           </Route>
         </Routes>
       </div>
-
     </Div100vh>
   )
 }
