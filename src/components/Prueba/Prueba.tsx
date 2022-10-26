@@ -67,6 +67,10 @@ const ejemplosConfirmacion = [
   'Yo no he sacado hora',
   'Este no es mi numero',
   'Te digo más tarde',
+  'Esperame tantito',
+  'Claro', 
+  'voy en el metro, te aviso al rato',
+  'ahorita te confirmo',
 ]
 
 const ejemplosDiaReagendamiento = [
