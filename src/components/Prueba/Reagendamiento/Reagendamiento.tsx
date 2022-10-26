@@ -59,7 +59,12 @@ const obtenerDisponibilidad = (fecha: Date, date_spec: { 0: string | null, 1: st
     ))
   }
   else if (horaInicial && horaFinal) {
-    return [format(parse(horaInicial, 'HH:mm:ss', new Date()), 'HH:mm')]
+    if (horaInicial === horaFinal) {
+      return [format(parse(horaInicial, 'HH:mm:ss', new Date()), 'HH:mm')]
+    }
+    return horas.filter(h => h >= parse(horaInicial, 'HH:mm:ss', new Date()).getHours() && h <= parse(horaFinal, 'HH:mm:ss', new Date()).getHours()).map(hora => (
+      format(parse(hora.toString(), 'H', new Date()), 'HH:mm')
+    ))
   }
   return []
 }
