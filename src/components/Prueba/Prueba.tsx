@@ -64,7 +64,6 @@ const ejemplosConfirmacion = [
   'No',
   'La confirmo',
   'La cancelo avísele al doctor',
-  'Se puede pagar por fonasa',
   'Yo no he sacado hora',
   'Este no es mi numero',
   'Te digo más tarde',
